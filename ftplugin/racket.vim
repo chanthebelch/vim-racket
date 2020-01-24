@@ -35,15 +35,15 @@ setl makeprg=raco\ make\ --\ %
 " but then vim says:
 "    "press ENTER or type a command to continue"
 " We avoid the annoyance of having to hit enter by remapping K directly.
-nnoremap <buffer> K :silent !raco docs <cword><cr>:redraw!<cr>
+nnoremap <buffer> K :!racketdoc <cword><cr>
 
-" For the visual mode K mapping, it's slightly more convoluted to get the 
+" For the visual mode K mapping, it's slightly more convoluted to get the
 " selected text:
 function! s:Racket_visual_doc()
   try
     let l:old_a = @a
     normal! gv"ay
-    call system("raco docs '". @a . "'")
+    call system("racketdoc '". @a . "'")
     redraw!
     return @a
   finally
