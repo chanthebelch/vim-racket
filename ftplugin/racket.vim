@@ -31,7 +31,7 @@ setl formatoptions+=r
 setl makeprg=raco\ make\ --\ %
 
 function! s:Racket_doc()
-    call system("racketdoc " . shellescape(expand("<cword>")))
+    echo system("racketdoc " . shellescape(expand("<cword>")))
 endfunction
 
 " Simply setting keywordprg like this works:
