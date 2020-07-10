@@ -30,12 +30,16 @@ setl formatoptions+=r
 
 setl makeprg=raco\ make\ --\ %
 
+function! s:Racket_doc()
+    call system("racketdoc " . shellescape(expand("<cword>")))
+endfunction
+
 " Simply setting keywordprg like this works:
 "    setl keywordprg=raco\ docs
 " but then vim says:
 "    "press ENTER or type a command to continue"
 " We avoid the annoyance of having to hit enter by remapping K directly.
-nnoremap <buffer> K :!racketdoc <cword><cr>
+nnoremap <buffer> K :call <SID>Racket_doc()<cr>
 
 " For the visual mode K mapping, it's slightly more convoluted to get the
 " selected text:
